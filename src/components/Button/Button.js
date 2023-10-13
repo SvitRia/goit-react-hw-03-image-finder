@@ -5,13 +5,13 @@ export class ButtonLoading extends Component {
     state = {
         isLoading: false,
     };
-    onLoading = () => { }
+    
 
     render() {
         
         return (
             <div>
-                <button type='button' onClick={this.onLoading}></button>
+                <button type='button'>Load more...</button>
             </div>);
     };
 }
