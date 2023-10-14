@@ -17,12 +17,26 @@ export class App extends Component {
    
   };
 
-  onSearchFilter = (evt ) => {
-    evt.preventDefault()
-    this.setState({ query: evt.currentTarget.value.trim() });
-    this.setState.page = 1;
-    this.setState.query = "";
-   
+  onSearchFilter = evt => {
+    evt.preventDefault();
+    this.setState({ query: evt.target.value });
+        console.log(evt.target.value);
+
+    if (this.state.query === evt.target.value) {
+      return;
+    } else {
+      this.setState({
+        galleryItems: [],
+        page: 1,
+      });
+    }
+  
+  };
+
+  resetFilters = () => {
+    this.setState({
+      query: ''
+    });
   };
 
   onLoadMore = () => {
@@ -53,7 +67,7 @@ export class App extends Component {
     const {galleryItems, loading } = this.state
     return (
       <div>
-        <SearchForm onSubmit={this.onSearchFilter} />
+        <SearchForm search={this.query} onChangeFilter={this.onSearchFilter} />
         {galleryItems.length > 0 && <GallaryList items={galleryItems} />}
          {loading && <div>Loader...</div>} 
         <ButtonLoading onClick={this.onLoadMore } />
