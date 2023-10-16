@@ -14,7 +14,7 @@ export class ButtonLoading extends Component {
                 <button type='button'>Load more...</button>
             </div>);
     };
-}
+};
     
 
   

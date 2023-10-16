@@ -14,13 +14,12 @@ export class App extends Component {
     error: false,
     query: "",
     page: 1,
-   
+    totalPage: 1,
   };
 
   onSearchFilter = evt => {
     evt.preventDefault();
     this.setState({ query: evt.target.value });
-        console.log(evt.target.value);
 
     if (this.state.query === evt.target.value) {
       return;
@@ -44,16 +43,21 @@ export class App extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-  console.log('prevState', prevState);
+
     if (prevState.query !== this.state.query || prevState.page !== this.state.page) {
-      console.log("Hallo")
       // HTTP запрос с SetState
       try {
        
       this.setState({ loading: true, error: false });
-        const images = await fetchImages(this.state.query, this.state.page);
+        const result = await fetchImages(this.state.query, this.state.page);
+        const { totalHits, hits } = result;
         
-      this.setState({ galleryItems: images });
+        this.setState({
+          galleryItems: hits,
+          totalPage: Math.ceil(totalHits / 12)
+       
+        });
+           console.log(totalHits)
     } catch (error) {
       this.setState({ error: true });
     } finally {
@@ -64,14 +68,14 @@ export class App extends Component {
 
 
   render() {
-    const {galleryItems, loading } = this.state
+    const {query, galleryItems, loading, page, totalPage } = this.state
     return (
       <div>
-        <SearchForm search={this.query} onChangeFilter={this.onSearchFilter} />
+        <SearchForm search={query} onChangeFilter={this.onSearchFilter}
+        resetFilter={this.resetFilters}/>
         {galleryItems.length > 0 && <GallaryList items={galleryItems} />}
          {loading && <div>Loader...</div>} 
-        <ButtonLoading onClick={this.onLoadMore } />
-      </div>
-    );
+        {(page > 0 && page < totalPage) &&<ButtonLoading onClick={this.onLoadMore} />}
+      </div>  );
   };
 }

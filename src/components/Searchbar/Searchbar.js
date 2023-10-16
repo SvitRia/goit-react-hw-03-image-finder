@@ -1,15 +1,16 @@
-import { Component } from 'react';
+
 import { HiSearch } from 'react-icons/hi';
 
-export const SearchForm = ({ search,onChangeFilter}) => {
+export const SearchForm = ({ search, onChangeFilter, resetFilter }) => {
   return (
           <div>      
           <input type="text"
               value={search}
-              placeholder=" " 
-              onChange={onChangeFilter} />
+              placeholder=" "
+              onChange={onChangeFilter}
+         />
        
-          <button type="submit" ><HiSearch/></button>
+          <button type="submit"  ><HiSearch/></button>
       </div>
    );
 };

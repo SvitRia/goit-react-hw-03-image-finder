@@ -6,7 +6,7 @@ export const GallaryList = ({items}) => {
     <div> 
     {items.map(item => (
         <li key={item.id}>
-            <GalleryItem miniImg={item.webformatURL} origimalImg={item.largeImageURL}  /> 
+            <GalleryItem miniImg={item.webformatURL} originalImg={item.largeImageURL}  /> 
         </li>
       ))}
      </div>
