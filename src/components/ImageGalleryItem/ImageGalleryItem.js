@@ -1,8 +1,14 @@
-import { Lightbox } from "components/Modal/Modal";
+import { Lightbox } from 'components/Modal/Modal';
 import { Component } from 'react';
 import Modal from 'react-modal';
-
-
+import { HiOutlineX } from 'react-icons/hi';
+import {
+  GallaryItem,
+  GallaryImage,
+  ModalStyle,
+  ModalStyleContent,
+  BtnClose
+} from './ImageGalleryItem.styled';
 
 Modal.setAppElement('#root');
 export class GalleryItem extends Component {
@@ -20,26 +26,28 @@ export class GalleryItem extends Component {
 
   render() {
     const { isModalOpen } = this.state;
-    const {
-      miniImg, originalImg
-    } = this.props;
+    const { miniImg, originalImg, alt } = this.props;
 
-      return (
-        <>
-        <div class="gallery-item" >
-         <img src={miniImg} alt="" onClick={this.openModal}/>
+    return (
+      <>
+        <GallaryItem class="gallery-item">
+          <GallaryImage
+            src={miniImg}
+            alt={alt}
+            onClick={this.openModal}
+            width="300"
+          />
 
-        <Modal
-         isOpen={isModalOpen}
-       
-        >
-          <Lightbox largeImg={originalImg}/>
-          <button onClick={this.closeModal}>close</button>
-        </Modal>
-              </div>
-              </>
+          <ModalStyle isOpen={isModalOpen}>
+            <ModalStyleContent>
+              <Lightbox largeImg={originalImg} />
+            </ModalStyleContent>
+            <BtnClose onClick={this.closeModal}><HiOutlineX /></BtnClose>
+          </ModalStyle>
+        </GallaryItem>
+      </>
     );
   }
 }
 
-// 
+

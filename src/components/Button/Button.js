@@ -1,22 +1,10 @@
-import { Component } from 'react'
-
-    
-export class ButtonLoading extends Component {
-    state = {
-        isLoading: false,
-    };
-    
-
-    render() {
-        
-        return (
-            <div>
-                <button type='button'>Load more...</button>
-            </div>);
-    };
+import { BtnLoadMore, BtnBox } from "./Button.styled";
+export const ButtonLoading = ({ onClick }) => {
+  return (
+    <BtnBox>
+      <BtnLoadMore type="button" onClick={onClick}>
+        Load more...
+      </BtnLoadMore>
+    </BtnBox>
+  );
 };
-    
-
-  
-
-
