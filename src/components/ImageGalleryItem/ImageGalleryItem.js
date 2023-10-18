@@ -30,7 +30,7 @@ export class GalleryItem extends Component {
 
     return (
       <>
-        <GallaryItem class="gallery-item">
+        <GallaryItem >
           <GallaryImage
             src={miniImg}
             alt={alt}

@@ -55,7 +55,7 @@ export class App extends Component {
           totalPage: Math.ceil(totalHits / 12)
        
         });
-           console.log(totalHits)
+         
     } catch (error) {
       this.setState({ error: true });
     } finally {

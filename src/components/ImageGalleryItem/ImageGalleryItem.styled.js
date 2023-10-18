@@ -33,7 +33,7 @@ max-width: calc(100vw - 48px);
 export const BtnClose = styled.button`
 position: absolute;
 top: 100px;
-right: 300px;
+right: 100px;
 wigth: 24px;
 height: 24px;
 border-radius:50%;
