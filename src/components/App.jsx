@@ -42,27 +42,31 @@ export class App extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-  if (prevState.query !== this.state.query || prevState.page !== this.state.page) {
-      this.setState({ loading: true,  });
+    if (prevState.query !== this.state.query || prevState.page !== this.state.page) {
+      this.setState({ loading: true, });
       // HTTP запрос с SetState
       try {
-      
         const result = await fetchImages(this.state.query, this.state.page);
         const { totalHits, hits } = result;
-        
-        this.setState({
-          galleryItems: hits,
-          totalPage: Math.ceil(totalHits / 12)
-       
-        });
+        const allPages = Math.ceil(totalHits / 12);
+        this.setState(
+          prevState =>
+            ({ galleryItems: [...prevState.galleryItems,  ...hits ] })
+        );
+
+        this.setState(
+          {
+            totalPage: allPages,
+          });
          
-    } catch (error) {
+      } catch (error) {
       this.setState({ error: true });
     } finally {
       this.setState({ loading: false });
-    }
+      }
+      };
     };
-  };
+  
 
 
   render() {

@@ -27,13 +27,14 @@ export const ModalStyle = styled(Modal)`
   background-color: rgba(0, 0, 0, 0.8);
 `
 export const ModalStyleContent = styled.div`
+position: relative;
 max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
 `
 export const BtnClose = styled.button`
 position: absolute;
-top: 100px;
-right: 100px;
+top: 40px;
+right: 10px;
 wigth: 24px;
 height: 24px;
 border-radius:50%;

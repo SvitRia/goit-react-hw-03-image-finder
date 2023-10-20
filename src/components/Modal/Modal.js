@@ -1,8 +1,16 @@
-// import * as basicLightbox from 'basiclightbox'
 
-export const Lightbox = ({ largeImg }) => {
-  return (<div>
-      <img src={largeImg} alt="" width="800" height="600"/>
+
+
+export const Modalbox = ({
+  largeImg,
+  tags,
+  
+
+}) => {
+  return (<div> 
+
+    <img src={largeImg} alt={tags} width="850" height="600" />
+    
   </div>) 
     
 }
@@ -10,12 +18,6 @@ export const Lightbox = ({ largeImg }) => {
 
 // export const Lightbox = (largeImg) => {
 //    const instance = basicLightbox.create(`
-//     <img src=${largeImg} width="800" height="600">`) 
+//     <img src=${largeImg} width="8" height="600">`) 
 //     instance.show()
 //}
-
-
-
-
-// instance.show()
-// instance.close()
